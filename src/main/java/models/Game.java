@@ -29,20 +29,6 @@ public class Game {
 
     public void shuffle() {
         // shuffles the deck so that it is random
-        /*the following block is how I shuffle a deck in C++
-        I will work on converting this to Java....
-
-        srand(time(NULL));
-
-      	for(int i = 0; i<1000; i++){
-      		int r = rand() % 52;
-      		int q = rand() % 52;
-      		card temp = c[q];
-      		card temp2 = c[r];
-      		c[r] = temp;
-      		c[q] = temp2;
-      	}
-        */
 
         system.out.println(" Shuffling cards....");
         Collections.shuffle(deck);
