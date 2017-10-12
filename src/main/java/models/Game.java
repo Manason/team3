@@ -35,10 +35,20 @@ public class Game {
 
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
+		if(deck.size() > 0){
+			for(int i = 0; i < 4; i++){
+				Card drawnCard = deck.get(deck.size()-1);
+				deck.remove(deck.size()-1);
+				cols.get(i).add(drawnCard);
+			}
+		}
     }
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
+        if (cols.get(columnNumber).size() > 0) {
+            cols.get(columnNumber).remove(cols.get(columnNumber).size()-1);
+        }
     }
 
     private boolean columnHasCards(int columnNumber) {
