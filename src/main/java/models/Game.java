@@ -31,7 +31,7 @@ public class Game {
         // shuffles the deck so that it is random
         /*the following block is how I shuffle a deck in C++
         I will work on converting this to Java....
-        
+
         srand(time(NULL));
 
       	for(int i = 0; i<1000; i++){
@@ -43,6 +43,10 @@ public class Game {
       		c[q] = temp2;
       	}
         */
+
+        system.out.println(" Shuffling cards....");
+        Collections.shuffle(deck);
+        system.out.println("Cards have been shuffled!");
     }
 
     public void dealFour() {
