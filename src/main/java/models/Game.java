@@ -35,8 +35,8 @@ public class Game {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
 		if(deck.size() > 0){
 			for(int i = 0; i < 4; i++){
-				Card drawnCard = deck.get(deck.size());
-				deck.remove(deck.size());
+				Card drawnCard = deck.get(deck.size()-1);
+				deck.remove(deck.size()-1);
 				cols.get(i).add(drawnCard);
 			}
 		}
