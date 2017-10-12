@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import javax.smartcardio.Card;
+
 /**
  * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
  */
@@ -41,6 +43,9 @@ public class Game {
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
+    	if (cols.get(columnNumber).size() != 0) {
+            return true;
+        }
         return false;
     }
 
@@ -48,9 +53,24 @@ public class Game {
         return this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1);
     }
 
-
+ // remove the top card from the columnFrom column, add it to the columnTo column
     public void move(int columnFrom, int columnTo) {
-        // remove the top card from the columnFrom column, add it to the columnTo column
+
+        //check if columnFrom is empty, if it's empty, give error; else, run code
+        if (cols.get(columnFrom).size() == 0) {
+            System.out.println("No cards in this pile.");
+        } else {
+
+            //check if the array is empty. if its empty, move it, if not, give error
+            if (cols.get(columnTo).size() == 0) {
+                cols.get(columnFrom).remove(columnFrom);
+                cols.get(columnFrom).add(columnTo);
+
+            } else {
+                // give error message
+                System.out.println("This pile still has cards.");
+            }
+        }
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
