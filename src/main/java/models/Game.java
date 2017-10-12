@@ -37,6 +37,9 @@ public class Game {
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
+        if (cols.get(columnNumber).size() > 0) {
+            cols.get(columnNumber).remove(cols.get(columnNumber).size()-1);
+        }
     }
 
     private boolean columnHasCards(int columnNumber) {
