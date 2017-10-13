@@ -29,6 +29,10 @@ public class Game {
 
     public void shuffle() {
         // shuffles the deck so that it is random
+
+        system.out.println(" Shuffling cards...."); \\ let the user know that the cards are shuffling
+        Collections.shuffle(deck); \\ shuffle the cards with the "shuffle" function from the collections class
+        system.out.println("Cards have been shuffled!"); \\ let the user know that the cards have been shuffled
     }
 
     public void dealFour() {
