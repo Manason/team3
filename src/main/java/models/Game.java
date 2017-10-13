@@ -53,7 +53,7 @@ public class Game {
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
-    	if (cols.get(columnNumber).size() != 0) {
+    	if (cols.get(columnNumber).size() > 0) {
             return true;
         }
         return false;
@@ -67,19 +67,14 @@ public class Game {
     public void move(int columnFrom, int columnTo) {
 
         //check if columnFrom is empty, if it's empty, give error; else, run code
-        if (cols.get(columnFrom).size() == 0) {
-            System.out.println("No cards in this pile.");
+        if (columnHasCards(columnFrom) && !columnHasCard(columnTo)) {
+
+            Card topCard = cols.get(columnFrom).get(cols.get(columnFrom).size()-1);
+            cols.get(columnFrom).remove(cols.get(columnFrom).size()-1);
+            cols.get(columnTo).add(topCard);
+
         } else {
-
-            //check if the array is empty. if its empty, move it, if not, give error
-            if (cols.get(columnTo).size() == 0) {
-                cols.get(columnFrom).remove(columnFrom);
-                cols.get(columnFrom).add(columnTo);
-
-            } else {
-                // give error message
-                System.out.println("This pile still has cards.");
-            }
+            System.out.println("Check piles!");
         }
     }
 
