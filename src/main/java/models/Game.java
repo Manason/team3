@@ -16,6 +16,9 @@ public class Game {
 
     public Game(){
         // initialize a new game such that each column can store cards
+        for(int i = 0; i < 4; i++){
+            cols.add(new ArrayList<Card>(13));
+        }
     }
 
     public void buildDeck() {
@@ -30,9 +33,9 @@ public class Game {
     public void shuffle() {
         // shuffles the deck so that it is random
 
-        system.out.println(" Shuffling cards...."); \\ let the user know that the cards are shuffling
-        Collections.shuffle(deck); \\ shuffle the cards with the "shuffle" function from the collections class
-        system.out.println("Cards have been shuffled!"); \\ let the user know that the cards have been shuffled
+        System.out.println(" Shuffling cards...."); // let the user know that the cards are shuffling
+        Collections.shuffle(deck); // shuffle the cards with the "shuffle" function from the collections class
+        System.out.println("Cards have been shuffled!"); // let the user know that the cards have been shuffled
     }
 
     public void dealFour() {
