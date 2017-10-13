@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import javax.smartcardio.Card;
-
 /**
  * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
  */
@@ -67,7 +65,7 @@ public class Game {
     public void move(int columnFrom, int columnTo) {
 
         //check if columnFrom is empty, if it's empty, give error; else, run code
-        if (columnHasCards(columnFrom) && !columnHasCard(columnTo)) {
+        if (columnHasCards(columnFrom) && !columnHasCards(columnTo)) {
 
             Card topCard = cols.get(columnFrom).get(cols.get(columnFrom).size()-1);
             cols.get(columnFrom).remove(cols.get(columnFrom).size()-1);
