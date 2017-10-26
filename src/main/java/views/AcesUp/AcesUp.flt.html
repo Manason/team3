@@ -96,7 +96,7 @@
 <script>
 
 var game;
-
+var selection = 0; //represents which column is selected. 0 means no selection.
 function display(game) {
 console.log(game);
 
@@ -130,31 +130,83 @@ game = data;
 
 
 $("#dealButton").click(function(){
-$.ajax({
-  type: "POST",
-  url: "/dealGame",
-  data: JSON.stringify(game),
-  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+    dealCards()
+});
+
+//listens for keyboard input
+document.addEventListener('keydown', (event)=> {
+    const keyName = event.key;
+    if(keyName === ' '){
+        dealCards();
+        return;
+    }
+    else if(keyName === '1'){
+        select(1);
+        return;
+    }
+    else if(keyName === '2'){
+        select(2);
+        return;
+    }
+    else if(keyName === '3'){
+        select(3);
+        return;
+    }
+    else if(keyName === '4'){
+        select(4);
+        return;
+    }
+    else if(keyName === 'Escape'){
+        clearSelection();
+        return;
+    }
+}, false);
+
+//selects the passed colNumber, moving or removing cards as appropriate
+function select(colNumber){
+    if(colNumber == selection){
+        removeCard(colNumber-1);
+        clearSelection();
+    }
+    else if(selection != 0){
+        moveCard(selection-1, colNumber-1);
+        clearSelection();
+    }
+    else{
+        selection = colNumber;
+    }
+}
+
+//clears the selection
+function clearSelection(){
+    selection = 0;
+}
+
+function dealCards(){
+    $.ajax({
+        type: "POST",
+        url: "/dealGame",
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
-  contentType:"application/json; charset=utf-8",
-  dataType:"json",
-});
-});
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+}
 
 
 function removeCard(colNumber){
-$.ajax({
-type: "POST",
-url: "/removeCard/"+colNumber,
-data: JSON.stringify(game),
-success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-game = data;
-display(data);},
-contentType:"application/json; charset=utf-8",
-dataType:"json",
-});
-
+    $.ajax({
+        type: "POST",
+        url: "/removeCard/"+colNumber,
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
 }
 
 
@@ -172,9 +224,7 @@ $("#Remove4").click(function(){
 });
 
 
-$("#moveButton").click(function(){
-var colFrom = $("#from_col").val();
-var colTo = $("#to_col").val();
+function moveCard(colFrom, colTo){
 $.ajax({
   type: "POST",
   url: "/moveCard/"+colFrom+"/"+colTo,
@@ -185,7 +235,7 @@ $.ajax({
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
-});
+}
 
 
 </script>
