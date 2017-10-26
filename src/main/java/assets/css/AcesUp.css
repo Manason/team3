@@ -16,3 +16,55 @@ font-weight: bold;
 width: 100px;
 background-color:#F0F0F0;
 }
+
+.title{
+    display: inline-block;
+    padding: 10px;
+
+}
+
+#dealButton{
+
+    width: 300px;
+    text-align: center;
+    font-size: 14px;
+
+}
+
+.button{
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: #292929;
+    padding: 20px 20px; /* size of box */
+    font-size: 24px;
+    border: 1px solid #2d6898;
+
+    -webkit-border-radius: 5px; /*makes the box rounded */
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    text-shadow: 0px -1px 0px black, 0px 3px 15px rgba(0,0,0,.4); /* shadow to the number */
+    -webkit-box-shadow: 0px 6px 0px black, 0px 3px 15px rgba(0,0,0,.4); /* dark shadow to the box */
+    -moz-box-shadow: -6px 6px 0px black, 0px 3px 15px rgba(0,0,0,.4); /* light shadow under the dark shadow */
+}
+
+#col1, #col2, #col3, #col4{
+    width: 20px; /* sets width of all boxes */
+    float: left;
+}
+
+#col2{
+    margin-left: 20px; /* distance between the boxes */
+
+}
+
+#col3{
+    margin-left: 20px;
+
+}
+
+#col4{
+    margin-left: 20px;
+
+}
