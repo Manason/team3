@@ -89,9 +89,6 @@
 </table>
 
 <button id="dealButton">Deal</button>
-<BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>
-
-<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
 <script>
 
@@ -128,7 +125,7 @@ display(data);
 game = data;
 });
 
-
+//deals cards if deal button is clicked.
 $("#dealButton").click(function(){
     dealCards()
 });
@@ -182,6 +179,7 @@ function clearSelection(){
     selection = 0;
 }
 
+//deals the cards
 function dealCards(){
     $.ajax({
         type: "POST",
@@ -195,7 +193,7 @@ function dealCards(){
     });
 }
 
-
+//remove the card from the given col starting from 0
 function removeCard(colNumber){
     $.ajax({
         type: "POST",
@@ -209,32 +207,18 @@ function removeCard(colNumber){
     });
 }
 
-
-$("#Remove1").click(function(){
-    removeCard(0);
-});
-$("#Remove2").click(function(){
-    removeCard(1);
-});
-$("#Remove3").click(function(){
-    removeCard(2);
-});
-$("#Remove4").click(function(){
-    removeCard(3);
-});
-
-
+//attempts to move a card from colFrom to colTo
 function moveCard(colFrom, colTo){
-$.ajax({
-  type: "POST",
-  url: "/moveCard/"+colFrom+"/"+colTo,
-  data: JSON.stringify(game),
-  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+    $.ajax({
+        type: "POST",
+        url: "/moveCard/"+colFrom+"/"+colTo,
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
         display(data);},
-  contentType:"application/json; charset=utf-8",
-  dataType:"json",
-});
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
 }
 
 
