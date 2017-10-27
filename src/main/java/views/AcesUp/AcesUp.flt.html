@@ -99,24 +99,51 @@ console.log(game);
 
 $( '.columnOfCards .cardLocation' ).html("");
 
-    $.each(game.cols[0], function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
-    });
+    //loop through each column
+    for(var i = 0; i < 4; i++){
+        var htmlCard;
 
- $.each(game.cols[1], function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
-    });
+        //update the html of each card in the column
+        $.each(game.cols[i], function(key, val){
 
- $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
-    });
+            //change the html to a fullsize card if it is the last card
+            if(game.cols[i].length-1 == key){
+                htmlCard = "<div class=\"playingCard\"><span class=\"cardValue\">"+valueToCard(val.value)+"</span><span class=\"cardSuit\">&"+suitToUnicode(val.suit)+";</span><span class=\"cardSuitBig\">&"+suitToUnicode(val.suit)+";</span></div>";
+            }
 
- $.each(game.cols[3], function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
-    });
+            //change the html to the header of a card
+            else{
+                htmlCard = "<div class=\"smallPlayingCard\"><span class=\"cardValue\">"+valueToCard(val.value)+"</span><span class=\"cardSuit\">&"+suitToUnicode(val.suit)+";</div>";
+            }
 
+            //write the html into the table element
+            $( '#c'+i+' .l'+key ).html(htmlCard);
+        });
+    }
+}
 
+//convert a string suit to it's unicode version. For example: "Hearts" becomes "hearts"
+function suitToUnicode(suit){
+    if(suit == "Diamonds")
+        return "diams";
+    else
+        return suit.toLowerCase();
+}
 
+//convert a string card value to a face card letter if applicable
+function valueToCard(value){
+    switch(value){
+        case 11:
+            return "J";
+        case 12:
+            return "Q";
+        case 13:
+            return "K";
+        case 14:
+            return "A";
+        default:
+            return value;
+    }
 }
 
 // Calls ApplicationController.gameGet()
