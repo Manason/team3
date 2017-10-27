@@ -9,6 +9,11 @@ height:20px;
 
 .title{
 font-weight: bold;
+display: inline-block;
+padding: 11px;
+position: absolute;
+left: 512px;
+top: 4px;
 }
 
 .cardLocation{
@@ -35,6 +40,12 @@ background-color:#F0F0F0;
     font-size:20px;
 
 }
+.columnTables{
+	position: relative;
+	float: right;
+	left: 98%;
+	top: 105px;
+}
 .cardSuit{
     display:inline-block;
     font-size:20px;
@@ -49,18 +60,21 @@ background-color:#F0F0F0;
     display:block;
 }
 
-.title{
-    display: inline-block;
-    padding: 10px;
-
-}
-
 #dealButton{
 
+    font-size: 14px;
     width: 300px;
     text-align: center;
     font-size: 14px;
+	  position: fixed;
+	  top: 651px;
+	  left: 38%;
 
+}
+
+.tbody{
+	position: relative;
+	top: 8px;
 }
 
 .button{
@@ -81,9 +95,16 @@ background-color:#F0F0F0;
     -moz-box-shadow: -6px 6px 0px black, 0px 3px 15px rgba(0,0,0,.4); /* light shadow under the dark shadow */
 }
 
+.columnOfCards{
+	border: dashed;
+	border-color: gray;
+	border-width: 2px;
+}
+
 #col1, #col2, #col3, #col4{
     width: 20px; /* sets width of all boxes */
     float: left;
+    margin-right: 28px;
 }
 
 #col2{
@@ -100,4 +121,3 @@ background-color:#F0F0F0;
     margin-left: 20px;
 
 }
-
