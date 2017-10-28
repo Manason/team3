@@ -171,3 +171,64 @@ background-color:#F0F0F0;
     margin-left: 20px;
 
 }
+
+.hidden{
+    display:none;
+}
+#help-modal-background{
+    position:fixed;
+    background-color:rgba(105, 105, 105, 0.75);
+    z-index:1000;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+#help-modal{
+    postion:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:1010;
+    overflow:auto;
+    width:auto;
+    max-width:600px;
+    min-width:350px;
+    min-height:350px;
+    margin: 100px auto;
+    background-color:#fff;
+    border:1px solid white;
+    border-radius:15px;
+}
+button {
+    position: relative;
+    left: 555;
+    bottom: 225;
+}
+#helpButton {
+    width: 20px; /* sets width of all boxes */
+    text-align: center;
+    height: 28px;
+    right: 10%;
+    bottom: 10%;
+    position: absolute;
+
+}
+#esc {
+    top:0px;
+    padding-left: 7px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 60px;
+}
+#restart {
+    font-size: 14px;
+    width: 10px;
+    text-align: center;
+    font-size: 14px;
+	position: fixed;
+    top: 100px;
+	right: 10%;
+}

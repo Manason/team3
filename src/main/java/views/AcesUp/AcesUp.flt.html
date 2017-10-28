@@ -4,7 +4,7 @@
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
 <body>
-
+<div id = "esc" class = "button">Cancel</div>
 <table class="tbody">
     <tr class="cols">
         <td id = "col1" class = "button">1</td>
@@ -87,9 +87,21 @@
         </td>
     </tr>
 </table>
-
+<div id = "restart" class = "button">R</div>
 <button id="dealButton" class = "button">Deal (Cards in Deck: #)</button>
-
+<div id = "helpButton" class = "button">?</div>
+<div class="hidden" id="help-modal-background">
+    <div id="help-modal">
+        <h1>How to Play</h1>
+        <p>You can either use the keyboard keys or click the buttons on the screen with your mouse.<br>
+        1, 2, 3, 4 selects the respective column<br>
+        While a column is selected, attempting to select it again will remove the bottom card if a higher value card of the same suit is the bottom card on a different column,<br>
+        While a column is selected, selecting a different column will attempt to move the selected card to the new column. This only works if the column being moved to is empty.<br>
+        ESC deselects your selection.<br>
+        Space deals a new card to each pile</p>
+        <button id="cancel-button">X</button>
+    </div>
+</div>
 <script>
 
 var game;
@@ -180,6 +192,15 @@ $("#col3").click(function(){
 $("#col4").click(function(){
     select(4);
 });
+$("#helpButton").click(function(){
+    toggleModal();
+});
+$("#cancel-button").click(function(){
+    toggleModal();
+});
+$("#esc").click(function(){
+    clearSelection();
+});
 
 //listens for keyboard input
 document.addEventListener('keydown', (event)=> {
@@ -206,6 +227,10 @@ document.addEventListener('keydown', (event)=> {
     }
     else if(keyName === 'Escape'){
         clearSelection();
+        return;
+    }
+     else if(keyName === '?'){
+        toggleModal();
         return;
     }
 }, false);
@@ -283,7 +308,19 @@ function moveCard(colFrom, colTo){
         dataType:"json",
     });
 }
-
+// Toggle Modal when ? is pushed or button is clicked
+    var modalBackdrop = document.getElementById("help-modal-background");
+    var modal = document.getElementById("help-modal");
+    function toggleModal(event) {
+        if (modal.classList.contains("hidden")) {
+            modal.classList.remove('hidden');
+            modalBackdrop.classList.remove('hidden');
+        }
+        else {
+            modal.classList.add('hidden');
+            modalBackdrop.classList.add('hidden');
+        }
+    }
 
 </script>
 
