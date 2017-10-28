@@ -88,11 +88,12 @@
     </tr>
 </table>
 
-<button id="dealButton" class = "button">Deal (Cards in Deck: #)</button>
+<button id="dealButton" class = "button">Deal (Cards Left: 52)</button>
 
 <script>
 
 var game;
+var cardsLeft = 52;
 var selection = 0; //represents which column is selected. 0 means no selection.
 function display(game) {
 console.log(game);
@@ -105,7 +106,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 
         //update the html of each card in the column
         $.each(game.cols[i], function(key, val){
-
+            document.getElementById("dealButton").innerHTML = "Deal (Cards Left: "+ cardsLeft + ")";
             //change the html to a fullsize card if it is the last card
             if(game.cols[i].length-1 == key){
                 if(val.suit == "Diamonds" || val.suit == "Hearts"){
@@ -243,6 +244,10 @@ function clearSelection(){
 
 //deals the cards
 function dealCards(){
+    cardsLeft -= 4;
+    if(cardsLeft < 0){
+        cardsLeft = 0;
+    }
     clearSelection();
     $.ajax({
         type: "POST",
