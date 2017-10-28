@@ -196,18 +196,30 @@ function select(colNumber){
         moveCard(selection-1, colNumber-1);
         clearSelection();
     }
+
+    else if(game.cols[colNumber-1].length == 0){
+        //user tried to select an empty column. Do nothing.
+    }
     else{
+        //add the selection and css class to the element selected
         selection = colNumber;
+        document.getElementById('c'+(colNumber-1)).firstElementChild.rows[game.cols[colNumber-1].length-1].cells[0].firstElementChild.classList.add("selection");
     }
 }
 
 //clears the selection
 function clearSelection(){
+
+    //we don't want to remove the selection class from an element that doesn't exist or if nothing is already selected
+    if(game.cols[0].length > 0 && selection > 0){
+        document.getElementById("c"+(selection-1)).firstElementChild.rows[game.cols[selection-1].length-1].cells[0].firstElementChild.classList.remove("selection");
+    }
     selection = 0;
 }
 
 //deals the cards
 function dealCards(){
+    clearSelection();
     $.ajax({
         type: "POST",
         url: "/dealGame",
