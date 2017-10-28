@@ -3,6 +3,7 @@ width:500px;
 }
 
 td{
+vertical-align: text-top;
 width:100px;
 height:20px;
 }
