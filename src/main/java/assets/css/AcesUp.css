@@ -171,8 +171,6 @@ background-color:#F0F0F0;
     margin-left: 20px;
 
 }
-<<<<<<< Updated upstream
-=======
 
 .hidden{
     display:none;
@@ -187,7 +185,6 @@ background-color:#F0F0F0;
     bottom:0;
 }
 #help-modal{
-
     postion:fixed;
     left:0;
     right:0;
@@ -235,4 +232,3 @@ button {
     top: 100px;
 	right: 10%;
 }
->>>>>>> Stashed changes
