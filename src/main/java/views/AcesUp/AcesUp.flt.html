@@ -108,12 +108,22 @@ $( '.columnOfCards .cardLocation' ).html("");
 
             //change the html to a fullsize card if it is the last card
             if(game.cols[i].length-1 == key){
-                htmlCard = "<div class=\"playingCard\"><span class=\"cardValue\">"+valueToCard(val.value)+"</span><span class=\"cardSuit\">&"+suitToUnicode(val.suit)+";</span><span class=\"cardSuitBig\">&"+suitToUnicode(val.suit)+";</span></div>";
+                if(val.suit == "Diamonds" || val.suit == "Hearts"){
+                    htmlCard = "<div class=\"playingCard\"><span class=\"cardValue colorRed\">"+valueToCard(val.value)+"</span><span class=\"cardSuit colorRed\">&"+suitToUnicode(val.suit)+";</span><span class=\"cardSuitBig colorRed\">&"+suitToUnicode(val.suit)+";</span></div>";
+                }
+                else{
+                    htmlCard = "<div class=\"playingCard\"><span class=\"cardValue\">"+valueToCard(val.value)+"</span><span class=\"cardSuit\">&"+suitToUnicode(val.suit)+";</span><span class=\"cardSuitBig\">&"+suitToUnicode(val.suit)+";</span></div>";
+                }
             }
 
             //change the html to the header of a card
             else{
-                htmlCard = "<div class=\"smallPlayingCard\"><span class=\"cardValue\">"+valueToCard(val.value)+"</span><span class=\"cardSuit\">&"+suitToUnicode(val.suit)+";</div>";
+                if(val.suit == "Diamonds" || val.suit == "Hearts"){
+                    htmlCard = "<div class=\"smallPlayingCard\"><span class=\"cardValue colorRed\">"+valueToCard(val.value)+"</span><span class=\"cardSuit colorRed\">&"+suitToUnicode(val.suit)+";</div>";
+                }
+                else{
+                    htmlCard = "<div class=\"smallPlayingCard\"><span class=\"cardValue\">"+valueToCard(val.value)+"</span><span class=\"cardSuit\">&"+suitToUnicode(val.suit)+";</div>";
+                }
             }
 
             //write the html into the table element
@@ -155,6 +165,20 @@ game = data;
 //deals cards if deal button is clicked.
 $("#dealButton").click(function(){
     dealCards()
+});
+
+//can select buttons if clicked rather than keyboard input
+$("#col1").click(function(){
+    select(1);
+});
+$("#col2").click(function(){
+    select(2);
+});
+$("#col3").click(function(){
+    select(3);
+});
+$("#col4").click(function(){
+    select(4);
 });
 
 //listens for keyboard input
