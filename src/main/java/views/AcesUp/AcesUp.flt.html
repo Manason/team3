@@ -90,6 +90,19 @@
 
 <button id="dealButton" class = "button">Deal (Cards in Deck: #)</button>
 
+<div class="hidden" id="help-modal-background">
+    <div id="help-modal">
+        <h1>How to Play</h1>
+        <p>You can either use the keyboard keys or click the buttons on the screen with your mouse.<br>
+        1, 2, 3, 4 selects the respective column<br>
+        While a column is selected, attempting to select it again will remove the bottom card if a higher value card of the same suit is the bottom card on a different column,<br>
+        While a column is selected, selecting a different column will attempt to move the selected card to the new column. This only works if the column being moved to is empty.<br>
+        ESC deselects your selection.<br>
+        Space deals a new card to each pile</p>
+        <button>X</button>
+    </div>
+</div>
+
 <script>
 
 var game;

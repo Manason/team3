@@ -171,3 +171,34 @@ background-color:#F0F0F0;
     margin-left: 20px;
 
 }
+
+.hidden{
+    //display:none;
+}
+#help-modal-background{
+    position:fixed;
+    background-color:rgba(105, 105, 105, 0.75);
+    z-index:1000;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+#help-modal{
+    postion:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:1010;
+    overflow:auto;
+    width:auto;
+    max-width:600px;
+    min-width:350px;
+    min-height:350px;
+    margin: 100px auto;
+    background-color:#fff;
+    border:1px solid white;
+    border-radius:15px;
+}
+
