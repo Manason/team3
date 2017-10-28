@@ -27,6 +27,7 @@ border-bottom: solid 2px #ff0000;
 
 tr{
 width:500px;
+
 }
 
 td{
@@ -43,20 +44,26 @@ padding: 11px;
 position: absolute;
 left: 512px;
 top: 4px;
+
 }
 
 .cardLocation{
 width: 100px;
-background-color:#F0F0F0;
+
+visibility: hidden;
 }
 
 
 .playingCard{
+background-color:#F0F0F0;
+    visibility: visible;
     width:100px;
     height:150px;
     border:2px solid black;
 }
 .smallPlayingCard{
+background-color:#F0F0F0;
+    visibility: visible;
     width:100px;
     height:25px;
     border-top:2px solid black;
