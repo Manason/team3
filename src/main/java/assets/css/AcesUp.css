@@ -1,3 +1,25 @@
+body {
+margin: 0;
+padding: 0;
+
+background-color: #555;
+}
+pre {
+margin 0;
+}
+.title {
+text-align: center;
+height: 2%
+margin: 0;
+padding: 0 0 0 10px;
+
+font-size: 50px;
+font-weight: 100;
+
+color: #ff0000;
+border-bottom: solid 2px #ff0000;
+}
+
 .selection {
       box-shadow: 0 0 10px rgba(81, 203, 238, 1);
       outline: 2px solid rgba(81, 203, 238, 1);
@@ -5,34 +27,43 @@
 
 tr{
 width:500px;
+
 }
 
 td{
+vertical-align: text-top;
 width:100px;
 height:20px;
 }
 
-.title{
+.cols{
+margin-top: 4%;
 font-weight: bold;
 display: inline-block;
 padding: 11px;
 position: absolute;
 left: 512px;
 top: 4px;
+
 }
 
 .cardLocation{
 width: 100px;
-background-color:#F0F0F0;
+
+visibility: hidden;
 }
 
 
 .playingCard{
+background-color:#F0F0F0;
+    visibility: visible;
     width:100px;
     height:150px;
     border:2px solid black;
 }
 .smallPlayingCard{
+background-color:#F0F0F0;
+    visibility: visible;
     width:100px;
     height:25px;
     border-top:2px solid black;
@@ -49,7 +80,7 @@ background-color:#F0F0F0;
 	position: relative;
 	float: right;
 	left: 98%;
-	top: 105px;
+	top: 50px;
 }
 .cardSuit{
     display:inline-block;
