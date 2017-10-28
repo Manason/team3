@@ -167,6 +167,20 @@ $("#dealButton").click(function(){
     dealCards()
 });
 
+//can select buttons if clicked rather than keyboard input
+$("#col1").click(function(){
+    select(1);
+});
+$("#col2").click(function(){
+    select(2);
+});
+$("#col3").click(function(){
+    select(3);
+});
+$("#col4").click(function(){
+    select(4);
+});
+
 //listens for keyboard input
 document.addEventListener('keydown', (event)=> {
     const keyName = event.key;
