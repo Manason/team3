@@ -196,6 +196,10 @@ function select(colNumber){
         moveCard(selection-1, colNumber-1);
         clearSelection();
     }
+
+    else if(game.cols[colNumber-1].length == 0){
+        //user tried to select an empty column. Do nothing.
+    }
     else{
         //add the selection and css class to the element selected
         selection = colNumber;
