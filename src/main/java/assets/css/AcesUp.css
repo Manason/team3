@@ -12,13 +12,13 @@ cursor:default;
 background-color: #555;
 }
 pre {
-margin 0;
+margin: 0px;
 }
 .title {
 text-align: center;
-height: 2%
+height: 2%;
 margin: 0;
-padding: 0 0 0 10px;
+padding: 0 0 40px 10px;
 
 font-size: 50px;
 font-weight: 100;
@@ -49,8 +49,8 @@ font-weight: bold;
 display: inline-block;
 padding: 11px;
 position: absolute;
-left: 512px;
-top: 4px;
+left: 550px;
+top: -60px;
 
 }
 
@@ -88,7 +88,7 @@ background-color:#F0F0F0;
 .columnTables{
 	position: relative;
 	float: right;
-	left: 98%;
+	left: 530px;
 	top: 50px;
 }
 .cardSuit{
@@ -116,12 +116,12 @@ background-color:#F0F0F0;
     width: 300px;
     text-align: center;
     font-size: 14px;
-	  position: fixed;
-	  top: 651px;
+	  position: absolute;
+	  top: 750px;
 	  left: 38%;
 
 }
-//stands for table body
+/*stands for table body*/
 .tbody{
 	position: relative;
 	top: 8px;
@@ -149,6 +149,11 @@ background-color:#F0F0F0;
 	border: dashed;
 	border-color: gray;
 	border-width: 2px;
+
+}
+
+#c1, #c2, #c3{
+    margin-left: 20px;
 }
 
 #col1, #col2, #col3, #col4{
@@ -157,24 +162,19 @@ background-color:#F0F0F0;
     margin-right: 28px;
 }
 
-#col2{
+#col2, #col3, #col4{
     margin-left: 20px; /* distance between the boxes */
-
-}
-
-#col3{
-    margin-left: 20px;
-
-}
-
-#col4{
-    margin-left: 20px;
 
 }
 
 .hidden{
     display:none;
 }
+
+h1{
+    text-align: center;
+}
+
 #help-modal-background{
     position:fixed;
     background-color:rgba(105, 105, 105, 0.75);
@@ -201,11 +201,18 @@ background-color:#F0F0F0;
     border:1px solid white;
     border-radius:15px;
 }
+
 button {
     position: relative;
-    left: 555;
-    bottom: 225;
+    left: 555px;
+    bottom: 385px;
 }
+
+p{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 #helpButton {
     width: 20px; /* sets width of all boxes */
     text-align: center;
@@ -216,19 +223,20 @@ button {
 
 }
 #esc {
-    top:0px;
     padding-left: 7px;
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     width: 60px;
+    margin-left: 100px;
+    margin-top: 50px;
 }
 #restart {
     font-size: 14px;
     width: 10px;
     text-align: center;
     font-size: 14px;
-	position: fixed;
     top: 100px;
 	right: 10%;
+    position: absolute;
 }
