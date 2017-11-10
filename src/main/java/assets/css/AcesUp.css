@@ -144,14 +144,14 @@ background-color:#F0F0F0;
     -webkit-box-shadow: 0px 6px 0px black, 0px 3px 15px rgba(0,0,0,.4); /* dark shadow to the box */
     -moz-box-shadow: -6px 6px 0px black, 0px 3px 15px rgba(0,0,0,.4); /* light shadow under the dark shadow */
 }
-
+/*
 .columnOfCards{
 	border: dashed;
 	border-color: gray;
 	border-width: 2px;
 
 }
-
+*/
 #c1, #c2, #c3{
     margin-left: 20px;
 }
