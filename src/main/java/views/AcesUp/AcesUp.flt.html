@@ -123,10 +123,10 @@ $( '.columnOfCards .cardLocation' ).html("");
         var htmlCard;
 
         //update the html of each card in the column
-        $.each(game.cols[i], function(key, val){
+        $.each(game.cols.cols[i], function(key, val){
             document.getElementById("dealButton").innerHTML = "Deal (Cards Left: "+ cardsLeft + ")";
             //change the html to a fullsize card if it is the last card
-            if(game.cols[i].length-1 == key){
+            if(game.cols.cols[i].length-1 == key){
                 if(val.suit == "Diamonds" || val.suit == "Hearts"){
                     htmlCard = "<div class=\"playingCard\"><span class=\"cardValue colorRed\">"+valueToCard(val.value)+"</span><span class=\"cardSuit colorRed\">&"+suitToUnicode(val.suit)+";</span><span class=\"cardSuitBig colorRed\">&"+suitToUnicode(val.suit)+";</span></div>";
                 }
@@ -253,13 +253,13 @@ function select(colNumber){
         clearSelection();
     }
 
-    else if(game.cols[colNumber-1].length == 0){
+    else if(game.cols.cols[colNumber-1].length == 0){
         //user tried to select an empty column. Do nothing.
     }
     else{
         //add the selection and css class to the element selected
         selection = colNumber;
-        document.getElementById('c'+(colNumber-1)).firstElementChild.rows[game.cols[colNumber-1].length-1].cells[0].firstElementChild.classList.add("selection");
+        document.getElementById('c'+(colNumber-1)).firstElementChild.rows[game.cols.cols[colNumber-1].length-1].cells[0].firstElementChild.classList.add("selection");
     }
 }
 
@@ -267,8 +267,8 @@ function select(colNumber){
 function clearSelection(){
 
     //we don't want to remove the selection class from an element that doesn't exist or if nothing is already selected
-    if(game.cols[0].length > 0 && selection > 0){
-        document.getElementById("c"+(selection-1)).firstElementChild.rows[game.cols[selection-1].length-1].cells[0].firstElementChild.classList.remove("selection");
+    if(game.cols.cols[0].length > 0 && selection > 0){
+        document.getElementById("c"+(selection-1)).firstElementChild.rows[game.cols.cols[selection-1].length-1].cells[0].firstElementChild.classList.remove("selection");
     }
     selection = 0;
 }

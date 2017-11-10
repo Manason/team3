@@ -22,6 +22,7 @@ public class Game {
     //resets the game to it's initial state so that a new round can be played
     public void resetGame() {
         deck = new Deck();
+        deck.shuffle();
         cols = new Columns();
         score = 0;
     }
