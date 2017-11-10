@@ -39,13 +39,13 @@ public class Columns {
     }
 
     // Determines if a column has cards
-    private boolean columnHasCards(int columnNumber) {
+    public boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
         return (cols.get(columnNumber).size() > 0);
     }
 
     // Gets the top card of a column
-    private Card getTopCard(int columnNumber) {
+    public Card getTopCard(int columnNumber) {
         return this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1);
     }
 
