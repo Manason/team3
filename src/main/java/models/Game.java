@@ -9,47 +9,42 @@ import java.util.Random;
  */
 public class Game {
 
-    public java.util.List<Card> deck = new ArrayList<>();
-
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
+    public Deck deck;
+    public java.util.List<Column> cols;
+    public int score;
 
 
     public Game(){
-        // initialize a new game such that each column can store cards
-        for(int i = 0; i < 4; i++){
-            cols.add(new ArrayList<Card>(13));
-        }
+        resetGame();
     }
 
-    public void buildDeck() {
-        for(int i = 2; i < 15; i++){
-            deck.add(new Card(i,Suit.Clubs));
-            deck.add(new Card(i,Suit.Hearts));
-            deck.add(new Card(i,Suit.Diamonds));
-            deck.add(new Card(i,Suit.Spades));
-        }
+    //resets the game to it's initial state so that a new round can be played
+    public void resetGame() {
+        deck = new Deck();
+        cols = new java.util.List<Column>(4);
+        score = 0;
     }
 
-    public void shuffle() {
-        // shuffles the deck so that it is random
-
-        System.out.println(" Shuffling cards...."); // let the user know that the cards are shuffling
-        Collections.shuffle(deck); // shuffle the cards with the "shuffle" function from the collections class
-        System.out.println("Cards have been shuffled!"); // let the user know that the cards have been shuffled
+    //removes the top card from the col number starting from 0
+    public void removeCard(int colNumber){
+        cols.get(colNumber).removeCard();
     }
 
+
+    //deals four cards to each of the columns from the deck
     public void dealFour() {
-        // remove the top card from the deck and add it to a column; repeat for each of the four columns
-		if(deck.size() > 0){
-			for(int i = 0; i < 4; i++){
-				Card drawnCard = deck.get(deck.size()-1);
-				deck.remove(deck.size()-1);
-				cols.get(i).add(drawnCard);
-			}
-		}
+        if (deck.getSize() > 0) {
+            for (int i = 0; i < 4; i++) {
+                cols.get(i).addCard(deck.deal());
+            }
+        }
     }
 
-    public void remove(int columnNumber) {
+
+    public void removeCard(int columnNumber) {
+        if(cols.get(columNumber).getSize() > 0){
+
+        }
         // remove the top card from the indicated column
         if (columnHasCards(columnNumber)) {
            for(int i = 0; i < 4; i++) {
