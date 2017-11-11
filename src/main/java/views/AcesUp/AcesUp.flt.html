@@ -12,7 +12,7 @@
         <td id = "col3" class = button>3</td>
         <td id = "col4" class = "button">4</td>
     </tr>
-    <!-- this is a comment -->
+
     <tr class="columnTables"><td class="columnOfCards" id="c0">
         <table>
             <tr><td class="cardLocation l0"></td></tr>
@@ -98,12 +98,13 @@
 <div class="hidden" id="help-modal-background">
     <div id="help-modal">
         <h1>How to Play</h1>
-        <p>You can either use the keyboard keys or click the buttons on the screen with your mouse.<br>
-        1, 2, 3, 4 selects the respective column<br>
-        While a column is selected, attempting to select it again will remove the bottom card if a higher value card of the same suit is the bottom card on a different column,<br>
-        While a column is selected, selecting a different column will attempt to move the selected card to the new column. This only works if the column being moved to is empty.<br>
-        ESC deselects your selection.<br>
-        Space deals a new card to each pile</p>
+        <p>1. You can either use the keyboard keys or click the buttons on the screen with your mouse to preform actions.<br><br>
+        2. Pressing 1, 2, 3, or 4 will select the respective column<br><br>
+        3. While a column is selected, attempting to select it again will remove the bottom card if a higher value card of the same suit is the bottom card on a different column.
+        While a column is selected, selecting a different column will attempt to move the selected card to the new column. This only works if the column being moved to is empty and the card being moved is an Ace.<br><br>
+        4. Pressing the ESC key deselects your selection.<br><br>
+        5. Pressing space deals a new card to each pile<br><br>
+        TIP: For the best experience, play on full screen mode (press F11). </p>
         <button id="cancel-button">X</button>
     </div>
 </div>
@@ -236,7 +237,7 @@ document.addEventListener('keydown', (event)=> {
         clearSelection();
         return;
     }
-     else if(keyName === '?'){
+     else if(keyName === '?' || keyName === '/'){
         toggleModal();
         return;
     }
@@ -319,18 +320,12 @@ function moveCard(colFrom, colTo){
         dataType:"json",
     });
 }
+
 // Toggle Modal when ? is pushed or button is clicked
     var modalBackdrop = document.getElementById("help-modal-background");
     var modal = document.getElementById("help-modal");
     function toggleModal(event) {
-        if (modal.classList.contains("hidden")) {
-            modal.classList.remove('hidden');
-            modalBackdrop.classList.remove('hidden');
-        }
-        else {
-            modal.classList.add('hidden');
-            modalBackdrop.classList.add('hidden');
-        }
+        modalBackdrop.classList.toggle('hidden');
     }
 
 </script>
