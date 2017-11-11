@@ -237,7 +237,7 @@ document.addEventListener('keydown', (event)=> {
         clearSelection();
         return;
     }
-     else if(keyName === '?'){
+     else if(keyName === '?' || keyName === '/'){
         toggleModal();
         return;
     }
@@ -320,18 +320,12 @@ function moveCard(colFrom, colTo){
         dataType:"json",
     });
 }
+
 // Toggle Modal when ? is pushed or button is clicked
     var modalBackdrop = document.getElementById("help-modal-background");
     var modal = document.getElementById("help-modal");
     function toggleModal(event) {
-        if (modal.classList.contains("hidden")) {
-            modal.classList.remove('hidden');
-            modalBackdrop.classList.remove('hidden');
-        }
-        else {
-            modal.classList.add('hidden');
-            modalBackdrop.classList.add('hidden');
-        }
+        modalBackdrop.classList.toggle('hidden');
     }
 
 </script>
