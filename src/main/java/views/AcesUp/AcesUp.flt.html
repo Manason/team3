@@ -125,7 +125,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 
         //update the html of each card in the column
         $.each(game.cols.cols[i], function(key, val){
-            document.getElementById("dealButton").innerHTML = "Deal (Cards Left: "+ cardsLeft + ")";
+            updateCardsLeftHTML();
             //change the html to a fullsize card if it is the last card
             if(game.cols.cols[i].length-1 == key){
                 if(val.suit == "Diamonds" || val.suit == "Hearts"){
@@ -150,6 +150,11 @@ $( '.columnOfCards .cardLocation' ).html("");
             $( '#c'+i+' .l'+key ).html(htmlCard);
         });
     }
+}
+
+//updates the html of cards left in the deal button
+function updateCardsLeftHTML(){
+    document.getElementById("dealButton").innerHTML = "Deal (Cards Left: "+ cardsLeft + ")";
 }
 
 //convert a string suit to it's unicode version. For example: "Hearts" becomes "hearts"
@@ -211,7 +216,7 @@ $("#esc").click(function(){
 });
 $("restart").click(function(){
     resetGame();
-}):
+});
 
 //listens for keyboard input
 document.addEventListener('keydown', (event)=> {
@@ -252,6 +257,9 @@ document.addEventListener('keydown', (event)=> {
 
 //resets the game as if the user had refreshed the page
 function reset(){
+
+    cardsLeft = 52;
+    updateCardsLeftHTML();
     $.ajax({
         type: "POST",
         url: "/resetGame",
