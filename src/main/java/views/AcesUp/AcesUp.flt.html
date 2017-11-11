@@ -209,6 +209,9 @@ $("#cancel-button").click(function(){
 $("#esc").click(function(){
     clearSelection();
 });
+$("restart").click(function(){
+    resetGame();
+}):
 
 //listens for keyboard input
 document.addEventListener('keydown', (event)=> {
@@ -241,7 +244,25 @@ document.addEventListener('keydown', (event)=> {
         toggleModal();
         return;
     }
+    else if(keyName === 'r'){
+        reset();
+        return;
+    }
 }, false);
+
+//resets the game as if the user had refreshed the page
+function reset(){
+    $.ajax({
+        type: "POST",
+        url: "/resetGame",
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+}
 
 //selects the passed colNumber, moving or removing cards as appropriate
 function select(colNumber){

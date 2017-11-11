@@ -56,4 +56,10 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
+    public Result resetGame(Context context, Game g) {
+        if(context.getRequestPath().contains("reset")){
+            g.resetGame();
+        }
+        return Results.json().render(g);
+    }
 }
