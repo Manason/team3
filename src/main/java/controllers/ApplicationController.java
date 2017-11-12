@@ -33,8 +33,8 @@ public class ApplicationController {
     
     public Result gameGet(){
         Game g = new Game();
-        g.buildDeck();
-        g.shuffle();
+
+
 
         return Results.json().render(g);
     }
@@ -47,13 +47,19 @@ public class ApplicationController {
     }
 
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
-        g.remove(colNumber);
+        g.cols.remove(colNumber);
         return Results.json().render(g);
     }
 
     public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
-        g.move(colFrom,colTo);
+        g.cols.move(colFrom,colTo);
         return Results.json().render(g);
     }
 
+    public Result resetGame(Context context, Game g) {
+        if(context.getRequestPath().contains("reset")){
+            g.resetGame();
+        }
+        return Results.json().render(g);
+    }
 }
