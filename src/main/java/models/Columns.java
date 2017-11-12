@@ -52,15 +52,25 @@ public class Columns {
     // remove the top card from the columnFrom column, add it to the columnTo column
     public void move(int columnFrom, int columnTo) {
 
-        //check if columnFrom is empty, if it's empty, give error; else, run code
-        if (columnHasCards(columnFrom) && !columnHasCards(columnTo)) {
+        //get the top card from columnFrom
+        Card topCard = getTopCard(columnFrom);
 
-            Card topCard = getTopCard(columnFrom);
-            cols.get(columnFrom).remove(cols.get(columnFrom).size()-1);
-            addCard(topCard, columnTo);
+        //check if top card is an ace
+        if(topCard.value == 14) {
 
-        } else {
-            System.out.println("Error in Move, either the columnFrom is empty or the columnTo is not empty");
+            //check if columnFrom is empty, if it's empty, give error; else, run code
+            if (columnHasCards(columnFrom) && !columnHasCards(columnTo)) {
+
+
+                cols.get(columnFrom).remove(cols.get(columnFrom).size() - 1);
+                addCard(topCard, columnTo);
+
+            } else {
+                System.out.println("Error in Move, either the columnFrom is empty or the columnTo is not empty");
+            }
+        }
+        else{
+            System.out.println("You are only allowed to move Ace cards to empty piles!");
         }
     }
 
