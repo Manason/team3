@@ -189,7 +189,8 @@ game = data;
 
 //deals cards if deal button is clicked.
 $("#dealButton").click(function(){
-    dealCards()
+    dealCards();
+    document.getElementById("dealButton").blur();
 });
 
 //can select buttons if clicked rather than keyboard input
