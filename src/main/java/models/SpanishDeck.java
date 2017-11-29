@@ -4,7 +4,7 @@ public class SpanishDeck extends Deck {
 
     public SpanishDeck(){
         //initialize spanish deck
-        for(int i = 1; i < 12; i++) {
+        for(int i = 1; i < 13; i++) {
             deck.add(new Card(i, Suit.Bastos));
             deck.add(new Card(i, Suit.Oros));
             deck.add(new Card(i, Suit.Copas));
