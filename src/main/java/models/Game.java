@@ -35,5 +35,8 @@ public class Game {
             }
         }
     }
+    public Deck getDeck() {
+        return deck;
+    }
 
 }
