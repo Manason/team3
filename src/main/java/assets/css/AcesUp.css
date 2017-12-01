@@ -152,8 +152,15 @@ background-color:#F0F0F0;
 
 }
 */
+
+.cols{
+    left: 770px;
+    top: 20px;
+    position: absolute;
+}
+
 #c1, #c2, #c3{
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
 #col1, #col2, #col3, #col4{
@@ -184,6 +191,28 @@ h1{
     top:0;
     bottom:0;
 }
+
+#selection-modal-background{
+    position:fixed;
+    background-color:rgba(105, 105, 105, 0.75);
+    z-index:1000;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+
+#selection-modal{
+    postion:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:1010;
+    border:1px solid white;
+    border-radius:15px;
+}
+
 #help-modal{
     postion:fixed;
     left:0;
@@ -217,7 +246,7 @@ p{
     width: 20px; /* sets width of all boxes */
     text-align: center;
     height: 28px;
-    right: 10%;
+    right: 15%;
     bottom: 10%;
     position: absolute;
 
@@ -228,15 +257,35 @@ p{
     padding-top: 10px;
     padding-bottom: 10px;
     width: 60px;
-    margin-left: 100px;
+    left: 12%;
     margin-top: 50px;
+    position: fixed;
 }
 #restart {
     font-size: 14px;
     width: 10px;
     text-align: center;
     font-size: 14px;
-    top: 100px;
-	right: 10%;
+    top: 150px;
+	right: 15%;
     position: absolute;
+}
+
+#spanish-button{
+    margin-left: 200px;
+    margin-top: 150px;
+}
+
+#english-button{
+    margin-left: 150px;
+    margin-top: 450px;
+}
+
+#select-text{
+    text-align: left;
+    margin-left: 800px;
+    margin-top: 250px;
+    color: #FFFFFF;
+    -webkit-text-stroke: 2px black;
+    font-family: "Arial"
 }
