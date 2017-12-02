@@ -306,6 +306,8 @@ function clearSelection(){
 
 //deals the cards
 function dealCards(){
+
+    if(cardsLeft != 0){
     cardsLeft -= 4;
     if(cardsLeft < 0){
         cardsLeft = 0;
@@ -321,6 +323,7 @@ function dealCards(){
         contentType:"application/json; charset=utf-8",
         dataType:"json",
     });
+    }
 }
 
 //remove the card from the given col starting from 0
