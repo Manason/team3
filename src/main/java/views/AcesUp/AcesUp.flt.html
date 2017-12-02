@@ -307,22 +307,22 @@ function clearSelection(){
 //deals the cards
 function dealCards(){
 
-    if(cardsLeft != 0){
     cardsLeft -= 4;
     if(cardsLeft < 0){
         cardsLeft = 0;
     }
-    clearSelection();
-    $.ajax({
-        type: "POST",
-        url: "/dealGame",
-        data: JSON.stringify(game),
-        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-        game = data;
-        display(data);},
-        contentType:"application/json; charset=utf-8",
-        dataType:"json",
-    });
+    else{
+        clearSelection();
+        $.ajax({
+            type: "POST",
+            url: "/dealGame",
+            data: JSON.stringify(game),
+            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+        });
     }
 }
 
