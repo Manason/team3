@@ -111,7 +111,7 @@
 
 <div class = "hidden" id = "selection-modal-background">
     <div id = "selection-modal">
-        <h1> Select a deck to play with</h1>
+        <h1 id="select-text"> Select a deck to play with</h1>
         <button id="spanish-button" class="button">Spanish</button>
         <button id="english-button" class="button">English</button>
     </div>
@@ -342,21 +342,24 @@ function clearSelection(){
 
 //deals the cards
 function dealCards(){
+
     cardsLeft -= 4;
     if(cardsLeft < 0){
         cardsLeft = 0;
     }
-    clearSelection();
-    $.ajax({
-        type: "POST",
-        url: "/dealGame",
-        data: JSON.stringify(game),
-        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-        game = data;
-        display(data);},
-        contentType:"application/json; charset=utf-8",
-        dataType:"json",
-    });
+    else{
+        clearSelection();
+        $.ajax({
+            type: "POST",
+            url: "/dealGame",
+            data: JSON.stringify(game),
+            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+        });
+    }
 }
 
 //remove the card from the given col starting from 0
