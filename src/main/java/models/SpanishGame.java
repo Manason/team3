@@ -9,6 +9,7 @@ public class SpanishGame extends Game {
     }
 
     //resets the game to it's initial state so that a new round can be played
+    @Override
     public void resetGame() {
         deck = new SpanishDeck();
         deck.shuffle();
