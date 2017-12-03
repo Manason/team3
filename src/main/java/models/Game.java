@@ -10,7 +10,7 @@ import java.util.Random;
 public class Game {
 
     //deck is private as only Game should be drawing from deck, score and cols need to be accessed by the view however
-    private EnglishDeck deck;
+    private Deck deck;
     public Columns cols;
     public int score;
 
