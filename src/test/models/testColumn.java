@@ -18,10 +18,11 @@ public class testColumn {
     @Test
     public void testRemove() {
         Columns col = new Columns();
-        Card c = new Card(14,Suit.Hearts);
+        Card c = new Card(13,Suit.Hearts);
+        Card d = new Card( 9, Suit.Hearts);
         col.addCard(c, 1);
-        col.addCard(c, 2);
-        col.remove(1);
+        col.addCard(d, 2);
+        col.remove(2);
         Assert.assertNotEquals(col.columnSize(1), col.columnSize(2));
 
     }
@@ -51,11 +52,12 @@ public class testColumn {
     public void testMove() {
         Columns col = new Columns();
         Card c = new Card(14, Suit.Clubs);
+        Card d = new Card(12, Suit.Clubs);
         col.addCard(c, 2);
+        col.addCard(d, 3);
         col.move(2, 1);
-        Card d = col.getTopCard(2);
-        Card e = col.getTopCard(1);
-        Assert.assertNotEquals(d, e);
+        Assert.assertEquals(0, col.columnSize(2));
+        col.move(3, 2);
     }
 
 }
