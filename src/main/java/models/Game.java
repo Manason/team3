@@ -10,7 +10,7 @@ import java.util.Random;
 public class Game {
 
     //deck is private as only Game should be drawing from deck, score and cols need to be accessed by the view however
-    private Deck deck;
+    private EnglishDeck deck;
     public Columns cols;
     public int score;
 
@@ -21,7 +21,7 @@ public class Game {
 
     //resets the game to it's initial state so that a new round can be played
     public void resetGame() {
-        deck = new Deck();
+        deck = new EnglishDeck();
         deck.shuffle();
         cols = new Columns();
         score = 0;

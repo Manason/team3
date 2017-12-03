@@ -9,7 +9,7 @@ public class testSpanishDeck {
     @Test
     public void testConstructor() {
         SpanishDeck d = new SpanishDeck();
-        int value = 2;
+        int value = 1;
         for(int i = 0; i < 48; i += 4){
             assertEquals(d.deck.get(i).getValue(), value);
             assertEquals(d.deck.get(i).getSuit(), Suit.Bastos);

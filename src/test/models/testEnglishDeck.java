@@ -5,16 +5,16 @@ import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
 
-public class testDeck {
+public class testEnglishDeck {
     @Test
     public void testgetSize() {
-        Deck d = new Deck();
+        Deck d = new EnglishDeck();
         assertEquals(d.getSize(), 52);
     }
 
     @Test
     public void testConstructor() {
-        Deck d = new Deck();
+        Deck d = new EnglishDeck();
         int value = 2;
         for(int i = 0; i < 52; i+= 4){
             assertEquals(d.deck.get(i).getValue(), value);
@@ -34,7 +34,7 @@ public class testDeck {
 
     @Test
     public void testDraw() {
-        Deck d = new Deck();
+        Deck d = new EnglishDeck();
         Card lastCard = d.deck.get(51);
         Card c = d.draw();
         assertEquals(d.getSize(), 51);
@@ -42,8 +42,8 @@ public class testDeck {
     }
     @Test
     public void testShuffle(){
-        Deck d = new Deck();
-        Deck dShuffled = new Deck();
+        Deck d = new EnglishDeck();
+        Deck dShuffled = new EnglishDeck();
         dShuffled.shuffle();
         Assert.assertNotEquals(dShuffled, d);
 

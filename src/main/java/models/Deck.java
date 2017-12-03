@@ -7,17 +7,6 @@ public class Deck {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
-    //constructor for deck, initializes deck
-    public Deck() {
-
-        for (int i = 2; i < 15; i++) {
-            deck.add(new Card(i, Suit.Clubs));
-            deck.add(new Card(i, Suit.Hearts));
-            deck.add(new Card(i, Suit.Diamonds));
-            deck.add(new Card(i, Suit.Spades));
-        }
-    }
-
     //shuffles the deck
     public void shuffle() {
 
