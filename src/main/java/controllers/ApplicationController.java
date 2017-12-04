@@ -35,12 +35,10 @@ public class ApplicationController {
     public Result gameGet(Context context){
         if(context.getRequestPath().contains("spanishGame")){
             SpanishGame g = new SpanishGame();
-            System.out.println("Spanish Game init");
             return Results.json().render(g);
         }
         else {
             EnglishGame g = new EnglishGame();
-            System.out.println("Normal Game init");
             return Results.json().render(g);
         }
     }
@@ -48,13 +46,11 @@ public class ApplicationController {
     public Result dealPost(Context context, EnglishGame g) {
         g.dealFour();
         System.out.println(g.getClass());
-        System.out.println("Dealing init");
         return Results.json().render(g);
     }
     public Result dealPostS(Context context, SpanishGame g) {
         g.dealFour();
         System.out.println(g.getClass());
-        System.out.println("Dealing init");
         return Results.json().render(g);
     }
 
@@ -79,14 +75,12 @@ public class ApplicationController {
     public Result resetGame(Context context, EnglishGame g) {
         if(context.getRequestPath().contains("reset")){
             g.resetGame();
-            System.out.println("reset game init");
         }
         return Results.json().render(g);
     }
     public Result resetGameS(Context context, SpanishGame g) {
         if(context.getRequestPath().contains("reset")){
             g.resetGame();
-            System.out.println("reset game init");
         }
         return Results.json().render(g);
     }

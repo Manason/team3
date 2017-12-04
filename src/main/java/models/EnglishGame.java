@@ -14,10 +14,8 @@ public class EnglishGame extends Game {
         deck = new EnglishDeck();
         deck.shuffle();
         cols = new EnglishColumns();
-        System.out.println("resetGameCall TEst");
     }
     public void dealFour() {
-        System.out.println("Dealingg my dear freak frined");
         if (deck.getSize() > 0) {
             for (int i = 0; i < 4; i++) {
                 cols.addCard(deck.draw(), i);
