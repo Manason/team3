@@ -384,7 +384,7 @@ function clearSelection(){
 //deals the cards
 function dealCards(){
     cardsLeft -= 4;
-    if(cardsLeft < 0){
+    if(cardsLeft < -2){
         cardsLeft = 0;
     }
     else{
@@ -461,7 +461,7 @@ function moveCard(colFrom, colTo){
     else{
     $.ajax({
         type: "POST",
-        url: "/moveCard/"+colFrom+"/"+colTo,
+        url: "/moveCardS/"+colFrom+"/"+colTo,
         data: JSON.stringify(game),
         success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
