@@ -4,6 +4,8 @@ public class SpanishGame extends Game {
 
     private SpanishDeck deck;
 
+    private SpanishColumns cols;
+
     public SpanishGame(){
         resetGame();
     }
@@ -13,7 +15,7 @@ public class SpanishGame extends Game {
     public void resetGame() {
         deck = new SpanishDeck();
         deck.shuffle();
-        cols = new Columns();
+        cols = new SpanishColumns();
         score = 0;
     }
     @Override
