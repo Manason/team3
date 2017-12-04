@@ -16,12 +16,7 @@ public class testGame {
     @Test
     public void testDealFour() {
         Game g = new Game();
-        Deck d = g.getDeck();
         g.dealFour();
-        assertEquals(48, d.getSize());
+        assertEquals(1, g.cols.columnSize(1));
     }
-
-
-
-
 }
