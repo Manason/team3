@@ -122,7 +122,6 @@
 var game;
 var spanish = 0;
 var cardsLeft = 52;
-var restart = 1; //if this is one, game resets upon deck selection
 var selection = 0; //represents which column is selected. 0 means no selection.
 function display(game) {
 console.log(game);
@@ -265,32 +264,22 @@ $("#esc").click(function(){
     clearSelection();
 });
 $("#restart").click(function(){
-    restart = 1;
     toggleSelection();
-    if(restart == 1){
-        restart = 0;
-        reset();
-    }
+    reset();
 });
 $("#english-button").click(function(){
     toggleSelection();
-    if(restart == 1){
-        restart = 0;
-        cardsLeft = 52
-        spanish = 0;
-        loadGame()
-        reset();
-    }
+    cardsLeft = 52
+    spanish = 0;
+    loadGame()
+    reset();
 });
 $("#spanish-button").click(function(){
     toggleSelection();
-    if(restart == 1){
-        restart = 0;
-        cardsLeft = 50
-        spanish = 1;
-        loadGame()
-        reset();
-    }
+    cardsLeft = 50;
+    spanish = 1;
+    loadGame()
+    reset();
 });
 
 //listens for keyboard input
