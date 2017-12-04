@@ -143,7 +143,7 @@ $( '.columnOfCards .cardLocation' ).html("");
             updateCardsLeftHTML();
             //change the html to a fullsize card if it is the last card
             if(game.cols.cols[i].length-1 == key){
-                if(val.suit == "Diamonds" || val.suit == "Hearts"){
+                if(val.suit == "Diamonds" || val.suit == "Hearts" || val.suit == "Copas" || val.suit == "Espadas"){
                     htmlCard = "<div class=\"playingCard\"><span class=\"cardValue colorRed\">"+valueToCard(val.value)+"</span><span class=\"cardSuit colorRed\">&"+suitToUnicode(val.suit)+";</span><span class=\"cardSuitBig colorRed\">&"+suitToUnicode(val.suit)+";</span></div>";
                 }
                 else{
@@ -153,7 +153,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 
             //change the html to the header of a card
             else{
-                if(val.suit == "Diamonds" || val.suit == "Hearts"){
+                if(val.suit == "Diamonds" || val.suit == "Hearts" || val.suit == "Copas" || val.suit == "Espadas"){
                     htmlCard = "<div class=\"smallPlayingCard\"><span class=\"cardValue colorRed\">"+valueToCard(val.value)+"</span><span class=\"cardSuit colorRed\">&"+suitToUnicode(val.suit)+";</div>";
                 }
                 else{
@@ -176,6 +176,16 @@ function updateCardsLeftHTML(){
 function suitToUnicode(suit){
     if(suit == "Diamonds")
         return "diams";
+    else if(suit == "Bastos")
+        return "#x2667";
+    else if(suit == "Oros")
+        return "#x26C1";
+    else if(suit == "Copas")
+        return "#x2615";
+    else if(suit == "Espadas")
+        return "#x2694";
+    else if(suit == "Joker")
+        return "#x2620";
     else
         return suit.toLowerCase();
 }
