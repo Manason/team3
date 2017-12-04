@@ -29,6 +29,7 @@ public class Game {
 
     //deals four cards to each of the columns from the deck
     public void dealFour() {
+        System.out.println("Dealingg my dear freak frined");
         if (deck.getSize() > 0) {
             for (int i = 0; i < 4; i++) {
                 cols.addCard(deck.draw(), i);

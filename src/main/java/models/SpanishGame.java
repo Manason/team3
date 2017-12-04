@@ -2,8 +2,7 @@ package models;
 
 public class SpanishGame extends Game {
 
-    public Deck deck;
-
+    private SpanishDeck deck;
     public SpanishColumns cols;
 
     public SpanishGame(){
@@ -29,6 +28,7 @@ public class SpanishGame extends Game {
             else {
                 for (int i = 0; i < 4; i++) {
                     cols.addCard(deck.draw(), i);
+                    System.out.println("Dealingg frined");
                 }
             }
         }

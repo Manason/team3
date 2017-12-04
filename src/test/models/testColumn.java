@@ -8,12 +8,12 @@ import static org.junit.Assert.assertEquals;
 public class testColumn {
 
     @Test
-    //
     public void testAddCard() {
         Card c = new Card(14, Suit.Hearts);
         Columns col = new Columns();
 
     }
+
 
    /* @Test
     public void testRemove() {
@@ -26,6 +26,7 @@ public class testColumn {
         Assert.assertNotEquals(col.columnSize(1), col.columnSize(2));
 
     }*/
+
 
     @Test
     public void testColumnSize() {
@@ -48,6 +49,7 @@ public class testColumn {
         assertEquals(d, c);
     }
 
+
   /*  @Test
     public void testMove() {
         Columns col = new Columns();
@@ -61,3 +63,5 @@ public class testColumn {
     }*/
 
 }
+
+
