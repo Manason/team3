@@ -16,7 +16,7 @@
 
 package controllers;
 
-import models.Game;
+import models.EnglishGame;
 import models.SpanishGame;
 import ninja.Context;
 import ninja.Result;
@@ -39,13 +39,13 @@ public class ApplicationController {
             return Results.json().render(g);
         }
         else {
-            Game g = new Game();
+            EnglishGame g = new EnglishGame();
             System.out.println("Normal Game init");
             return Results.json().render(g);
         }
     }
 
-    public Result dealPost(Context context, Game g) {
+    public Result dealPost(Context context, EnglishGame g) {
         g.dealFour();
         System.out.println(g.getClass());
         System.out.println("Dealing init");
@@ -58,7 +58,7 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+    public Result removeCard(Context context, @PathParam("column") int colNumber, EnglishGame g){
         g.cols.remove(colNumber);
         return Results.json().render(g);
     }
@@ -67,7 +67,7 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
+    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, EnglishGame g){
         g.cols.move(colFrom,colTo);
         return Results.json().render(g);
     }
@@ -76,7 +76,7 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result resetGame(Context context, Game g) {
+    public Result resetGame(Context context, EnglishGame g) {
         if(context.getRequestPath().contains("reset")){
             g.resetGame();
             System.out.println("reset game init");
