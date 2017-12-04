@@ -17,6 +17,7 @@
 package controllers;
 
 import models.Game;
+import models.SpanishGame;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
@@ -31,12 +32,16 @@ public class ApplicationController {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
     
-    public Result gameGet(){
-        Game g = new Game();
-
-
-
-        return Results.json().render(g);
+    public Result gameGet(Context context){
+        if(context.getRequestPath().contains("spanishGame")){
+            SpanishGame g = new SpanishGame();
+            System.out.println("Flag");
+            return Results.json().render(g);
+        }
+        else {
+            Game g = new Game();
+            return Results.json().render(g);
+        }
     }
 
     public Result dealPost(Context context, Game g) {

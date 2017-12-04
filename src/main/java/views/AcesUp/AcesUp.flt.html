@@ -242,6 +242,16 @@ $("#english-button").click(function(){
     toggleSelection();
     if(restart == 1){
         restart = 0;
+        $.ajax({
+            type: "POST",
+            url: "/englishGame",
+            data: JSON.stringify(game),
+            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+        });
         reset();
     }
 });
@@ -249,6 +259,16 @@ $("#spanish-button").click(function(){
     toggleSelection();
     if(restart == 1){
         restart = 0;
+        $.ajax({
+            type: "POST",
+            url: "/spanishGame",
+            data: JSON.stringify(game),
+            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+        });
         reset();
     }
 });
