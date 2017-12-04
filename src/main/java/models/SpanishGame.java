@@ -16,6 +16,20 @@ public class SpanishGame extends Game {
         cols = new Columns();
         score = 0;
     }
+    @Override
+    public void dealFour() {
+        if (deck.getSize() > 0) {
+            if(deck.getSize() == 2){
+                cols.addCard(deck.draw(), 0);
+                cols.addCard(deck.draw(), 1);
+            }
+            else {
+                for (int i = 0; i < 4; i++) {
+                    cols.addCard(deck.draw(), i);
+                }
+            }
+        }
+    }
 
 }
 
