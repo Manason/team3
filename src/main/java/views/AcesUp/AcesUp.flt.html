@@ -193,17 +193,31 @@ function suitToUnicode(suit){
 
 //convert a string card value to a face card letter if applicable
 function valueToCard(value){
-    switch(value){
-        case 11:
-            return "J";
-        case 12:
-            return "Q";
-        case 13:
-            return "K";
-        case 14:
-            return "A";
-        default:
-            return value;
+    if (spanish == 0) {
+        switch(value){
+          case 11:
+               return "J";
+          case 12:
+                return "Q";
+          case 13:
+               return "K";
+          case 14:
+             return "A";
+          default:
+             return value;
+      }
+    }
+    if (spanish != 0) {
+        switch(value){
+            case 10:
+                return "J";
+            case 11:
+                return "Q";
+            case 12:
+                return "K";
+            case 13:
+                return "";
+        }
     }
 }
 
@@ -216,16 +230,11 @@ game = data;
 });
 }
 if (spanish != 0) {
-$.getJSON("http://localhost:8080/game", function( data ) {
+$.getJSON("http://localhost:8080/spanishGame", function( data ) {
 display(data);
 game = data;
 });
 }
-
-$.putJSON("http://localhost:8080/game", function( data ) {
-    display(data);
-    game = data;
-});
 
 //deals cards if deal button is clicked.
 $("#dealButton").click(function(){
@@ -267,6 +276,7 @@ $("#english-button").click(function(){
     toggleSelection();
     if(restart == 1){
         restart = 0;
+        spanish = 0;
         reset();
     }
 });
@@ -274,16 +284,7 @@ $("#spanish-button").click(function(){
     toggleSelection();
     if(restart == 1){
         restart = 0;
-        $.ajax({
-            type: "POST",
-            url: "/spanishGame",
-            data: JSON.stringify(game),
-            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-            game = data;
-            display(data);},
-            contentType:"application/json; charset=utf-8",
-            dataType:"json",
-        });
+        spanish = 1;
         reset();
     }
 });
@@ -329,8 +330,12 @@ document.addEventListener('keydown', (event)=> {
 
 //resets the game as if the user had refreshed the page
 function reset(){
-
+if (spanish == 0) {
     cardsLeft = 52;
+}
+else {
+    cardsLeft = 50;
+}
     updateCardsLeftHTML();
     $.ajax({
         type: "POST",
