@@ -11,7 +11,7 @@ public class Game {
 
     //deck is private as only Game should be drawing from deck, score and cols need to be accessed by the view however
     private Deck deck;
-    public SpanishColumns cols;
+    public EnglishColumns cols;
     public int score;
 
 
@@ -21,9 +21,9 @@ public class Game {
 
     //resets the game to it's initial state so that a new round can be played
     public void resetGame() {
-        deck = new SpanishDeck();
+        deck = new EnglishDeck();
         deck.shuffle();
-        cols = new SpanishColumns();
+        cols = new EnglishColumns();
         score = 0;
     }
 

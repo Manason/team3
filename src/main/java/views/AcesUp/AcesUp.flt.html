@@ -120,6 +120,7 @@
 <script>
 
 var game;
+var spanish = 0;
 var cardsLeft = 52;
 var restart = 0; //if this is one, game resets upon deck selection
 var newGame = 1; //determines if deck selection modal should pop up, this variable ensures that the modal pops up when page is loaded
@@ -207,9 +208,23 @@ function valueToCard(value){
 }
 
 // Calls ApplicationController.gameGet()
+// Calls ApplicationController.gameGet()
+if (spanish == 0) {
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
 game = data;
+});
+}
+if (spanish != 0) {
+$.getJSON("http://localhost:8080/game", function( data ) {
+display(data);
+game = data;
+});
+}
+
+$.putJSON("http://localhost:8080/game", function( data ) {
+    display(data);
+    game = data;
 });
 
 //deals cards if deal button is clicked.
@@ -252,16 +267,6 @@ $("#english-button").click(function(){
     toggleSelection();
     if(restart == 1){
         restart = 0;
-        $.ajax({
-            type: "POST",
-            url: "/englishGame",
-            data: JSON.stringify(game),
-            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
-            game = data;
-            display(data);},
-            contentType:"application/json; charset=utf-8",
-            dataType:"json",
-        });
         reset();
     }
 });

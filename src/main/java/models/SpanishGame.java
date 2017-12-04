@@ -2,7 +2,7 @@ package models;
 
 public class SpanishGame extends Game {
 
-    private Deck deck;
+    public Deck deck;
 
     public SpanishColumns cols;
 
