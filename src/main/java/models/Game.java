@@ -11,7 +11,7 @@ public class Game {
 
     //deck is private as only Game should be drawing from deck, score and cols need to be accessed by the view however
     private Deck deck;
-    public Columns cols;
+    public EnglishColumns cols;
     public int score;
 
 
@@ -23,7 +23,7 @@ public class Game {
     public void resetGame() {
         deck = new EnglishDeck();
         deck.shuffle();
-        cols = new Columns();
+        cols = new EnglishColumns();
         score = 0;
     }
 
