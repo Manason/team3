@@ -5,11 +5,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class testColumn {
+public class testEnglishColumn {
 
     @Test
     public void testRemove() {
-        Columns col = new Columns();
+        EnglishColumns col = new EnglishColumns();
         Card c = new Card(13,Suit.Hearts);
         Card d = new Card( 9, Suit.Hearts);
         col.addCard(c, 1);
@@ -20,7 +20,7 @@ public class testColumn {
 
     @Test
     public void testMove() {
-        Columns col = new Columns();
+        EnglishColumns col = new EnglishColumns();
         Card c = new Card(14, Suit.Clubs);
         Card d = new Card(12, Suit.Clubs);
         col.addCard(c, 2);

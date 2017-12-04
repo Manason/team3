@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 public class testSpanishGame {
 
     @Test
-
     public void testReset() {
         SpanishGame g = new SpanishGame();
         g.score = 50;
@@ -16,7 +15,7 @@ public class testSpanishGame {
 
     @Test
     public void testDealFour() {
-        Game g = new SpanishGame();
+        SpanishGame g = new SpanishGame();
         g.dealFour();
         assertEquals(1, g.cols.columnSize(1));
         int i = 0;
@@ -24,8 +23,7 @@ public class testSpanishGame {
             g.dealFour();
             i++;
         }
-        assertEquals(13, g.cols.columnSize(1));
+        assertEquals(13, g.cols.columnSize(0));
         assertEquals(12, g.cols.columnSize(3));
-
     }
 }
