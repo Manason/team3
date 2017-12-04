@@ -2,9 +2,9 @@ package models;
 
 public class SpanishGame extends Game {
 
-    private SpanishDeck deck;
+    private Deck deck;
 
-    private SpanishColumns cols;
+    public SpanishColumns cols;
 
     public SpanishGame(){
         resetGame();
@@ -17,6 +17,7 @@ public class SpanishGame extends Game {
         deck.shuffle();
         cols = new SpanishColumns();
         score = 0;
+        System.out.println("resetGameCall TEst");
     }
     @Override
     public void dealFour() {

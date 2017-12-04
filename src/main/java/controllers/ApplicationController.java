@@ -34,12 +34,13 @@ public class ApplicationController {
     
     public Result gameGet(Context context){
         if(context.getRequestPath().contains("spanishGame")){
-            SpanishGame g = new SpanishGame();
+            Game g = new SpanishGame();
             System.out.println("Flag");
             return Results.json().render(g);
         }
         else {
             Game g = new Game();
+            System.out.println("Bad");
             return Results.json().render(g);
         }
     }
