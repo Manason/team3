@@ -122,14 +122,12 @@
 var game;
 var spanish = 0;
 var cardsLeft = 52;
-var restart = 0; //if this is one, game resets upon deck selection
-var newGame = 1; //determines if deck selection modal should pop up, this variable ensures that the modal pops up when page is loaded
+var restart = 1; //if this is one, game resets upon deck selection
 var selection = 0; //represents which column is selected. 0 means no selection.
 function display(game) {
 console.log(game);
 
-if(newGame == 1){
-    newGame = 0;
+window.onLoad = function() {
     toggleSelection();
 }
 
@@ -223,17 +221,19 @@ function valueToCard(value){
 
 // Calls ApplicationController.gameGet()
 // Calls ApplicationController.gameGet()
-if (spanish == 0) {
-$.getJSON("http://localhost:8080/game", function( data ) {
-display(data);
-game = data;
-});
-}
-if (spanish != 0) {
-$.getJSON("http://localhost:8080/spanishGame", function( data ) {
-display(data);
-game = data;
-});
+function loadGame() {
+    if (spanish == 0) {
+        $.getJSON("http://localhost:8080/game", function( data ) {
+        display(data);
+        game = data;
+    });
+    }
+    if (spanish != 0) {
+        $.getJSON("http://localhost:8080/spanishGame", function( data ) {
+        display(data);
+        game = data;
+    });
+    }
 }
 
 //deals cards if deal button is clicked.
@@ -276,7 +276,9 @@ $("#english-button").click(function(){
     toggleSelection();
     if(restart == 1){
         restart = 0;
+        cardsLeft = 52
         spanish = 0;
+        loadGame()
         reset();
     }
 });
@@ -284,7 +286,9 @@ $("#spanish-button").click(function(){
     toggleSelection();
     if(restart == 1){
         restart = 0;
+        cardsLeft = 50
         spanish = 1;
+        loadGame()
         reset();
     }
 });
@@ -382,7 +386,6 @@ function clearSelection(){
 
 //deals the cards
 function dealCards(){
-
     cardsLeft -= 4;
     if(cardsLeft < 0){
         cardsLeft = 0;
@@ -435,7 +438,6 @@ var selectionModalBack = document.getElementById("selection-modal-background");
 var selectionModal = document.getElementById("selection-modal");
 function toggleSelection(event){
     selectionModalBack.classList.toggle('hidden');
-    reset();
 }
 // Toggle Modal when ? is pushed or button is clicked
     var modalBackdrop = document.getElementById("help-modal-background");
