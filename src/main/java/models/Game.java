@@ -7,32 +7,15 @@ import java.util.Random;
 /**
  * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
  */
-public class Game {
+abstract class Game {
 
     //deck is private as only Game should be drawing from deck, score and cols need to be accessed by the view however
     private Deck deck;
-    public Columns cols;
-    public int score;
-
-
-    public Game(){
-        resetGame();
-    }
+    public EnglishColumns cols;
 
     //resets the game to it's initial state so that a new round can be played
-    public void resetGame() {
-        deck = new EnglishDeck();
-        deck.shuffle();
-        cols = new Columns();
-        score = 0;
-    }
+    abstract public void resetGame();
 
     //deals four cards to each of the columns from the deck
-    public void dealFour() {
-        if (deck.getSize() > 0) {
-            for (int i = 0; i < 4; i++) {
-                cols.addCard(deck.draw(), i);
-            }
-        }
-    }
+    abstract public void dealFour();
 }

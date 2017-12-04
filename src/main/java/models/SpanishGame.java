@@ -3,20 +3,18 @@ package models;
 public class SpanishGame extends Game {
 
     private SpanishDeck deck;
+    public SpanishColumns cols;
 
     public SpanishGame(){
         resetGame();
     }
 
     //resets the game to it's initial state so that a new round can be played
-    @Override
     public void resetGame() {
         deck = new SpanishDeck();
         deck.shuffle();
-        cols = new Columns();
-        score = 0;
+        cols = new SpanishColumns();
     }
-    @Override
     public void dealFour() {
         if (deck.getSize() > 0) {
             if(deck.getSize() == 2){

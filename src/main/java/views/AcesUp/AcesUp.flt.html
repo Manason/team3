@@ -109,7 +109,7 @@
     </div>
 </div>
 
-<div class = "hidden" id = "selection-modal-background">
+<div id = "selection-modal-background">
     <div id = "selection-modal">
         <h1 id="select-text"> Select a deck to play with</h1>
         <button id="spanish-button" class="button">Spanish</button>
@@ -120,17 +120,11 @@
 <script>
 
 var game;
+var spanish = 0;
 var cardsLeft = 52;
-var restart = 0; //if this is one, game resets upon deck selection
-var newGame = 1; //determines if deck selection modal should pop up, this variable ensures that the modal pops up when page is loaded
 var selection = 0; //represents which column is selected. 0 means no selection.
 function display(game) {
 console.log(game);
-
-if(newGame == 1){
-    newGame = 0;
-    toggleSelection();
-}
 
 $( '.columnOfCards .cardLocation' ).html("");
 
@@ -192,26 +186,52 @@ function suitToUnicode(suit){
 
 //convert a string card value to a face card letter if applicable
 function valueToCard(value){
-    switch(value){
-        case 11:
-            return "J";
-        case 12:
-            return "Q";
-        case 13:
-            return "K";
-        case 14:
-            return "A";
-        default:
-            return value;
+    if (spanish == 0) {
+        switch(value){
+          case 11:
+               return "J";
+          case 12:
+                return "Q";
+          case 13:
+               return "K";
+          case 14:
+             return "A";
+          default:
+             return value;
+      }
+    }
+    if (spanish != 0) {
+        switch(value){
+            case 10:
+                return "J";
+            case 11:
+                return "Q";
+            case 12:
+                return "K";
+            case 13:
+                return "";
+            default:
+                return value;
+        }
     }
 }
 
 // Calls ApplicationController.gameGet()
-$.getJSON("http://localhost:8080/game", function( data ) {
-display(data);
-game = data;
-});
-
+// Calls ApplicationController.gameGet()
+function loadGame() {
+    if (spanish == 0) {
+        $.getJSON("http://localhost:8080/game", function( data ) {
+        display(data);
+        game = data;
+    });
+    }
+    if (spanish != 0) {
+        $.getJSON("http://localhost:8080/spanishGame", function( data ) {
+        game = data;
+    });
+    }
+}
+loadGame();
 //deals cards if deal button is clicked.
 $("#dealButton").click(function(){
     dealCards();
@@ -241,26 +261,22 @@ $("#esc").click(function(){
     clearSelection();
 });
 $("#restart").click(function(){
-    restart = 1;
     toggleSelection();
-    if(restart == 1){
-        restart = 0;
-        reset();
-    }
+    reset();
 });
 $("#english-button").click(function(){
     toggleSelection();
-    if(restart == 1){
-        restart = 0;
-        reset();
-    }
+    cardsLeft = 52
+    spanish = 0;
+    loadGame()
+    reset();
 });
 $("#spanish-button").click(function(){
     toggleSelection();
-    if(restart == 1){
-        restart = 0;
-        reset();
-    }
+    cardsLeft = 50;
+    spanish = 1;
+    loadGame()
+    reset();
 });
 
 //listens for keyboard input
@@ -304,10 +320,21 @@ document.addEventListener('keydown', (event)=> {
 
 //resets the game as if the user had refreshed the page
 function reset(){
-
+if (spanish == 0) {
     cardsLeft = 52;
-    updateCardsLeftHTML();
-    $.ajax({
+     $.ajax({
+        type: "POST",
+        url: "/resetGameS",
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+}
+else {
+ $.ajax({
         type: "POST",
         url: "/resetGame",
         data: JSON.stringify(game),
@@ -317,6 +344,10 @@ function reset(){
         contentType:"application/json; charset=utf-8",
         dataType:"json",
     });
+    cardsLeft = 50;
+}
+    updateCardsLeftHTML();
+
 }
 
 //selects the passed colNumber, moving or removing cards as appropriate
@@ -352,13 +383,13 @@ function clearSelection(){
 
 //deals the cards
 function dealCards(){
-
     cardsLeft -= 4;
-    if(cardsLeft < 0){
+    if(cardsLeft < -2){
         cardsLeft = 0;
     }
     else{
         clearSelection();
+        if(spanish == 0){
         $.ajax({
             type: "POST",
             url: "/dealGame",
@@ -369,11 +400,25 @@ function dealCards(){
             contentType:"application/json; charset=utf-8",
             dataType:"json",
         });
+        }
+        else{
+         $.ajax({
+            type: "POST",
+            url: "/dealGameS",
+            data: JSON.stringify(game),
+            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+        });
+        }
     }
 }
 
 //remove the card from the given col starting from 0
 function removeCard(colNumber){
+    if(spanish == 0){
     $.ajax({
         type: "POST",
         url: "/removeCard/"+colNumber,
@@ -384,10 +429,24 @@ function removeCard(colNumber){
         contentType:"application/json; charset=utf-8",
         dataType:"json",
     });
+    }
+    else{
+      $.ajax({
+        type: "POST",
+        url: "/removeCardS/"+colNumber,
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+    }
 }
 
 //attempts to move a card from colFrom to colTo
 function moveCard(colFrom, colTo){
+    if(spanish == 0){
     $.ajax({
         type: "POST",
         url: "/moveCard/"+colFrom+"/"+colTo,
@@ -398,6 +457,19 @@ function moveCard(colFrom, colTo){
         contentType:"application/json; charset=utf-8",
         dataType:"json",
     });
+    }
+    else{
+    $.ajax({
+        type: "POST",
+        url: "/moveCardS/"+colFrom+"/"+colTo,
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+    }
 }
 
 //When to toggle selection modal
@@ -405,7 +477,6 @@ var selectionModalBack = document.getElementById("selection-modal-background");
 var selectionModal = document.getElementById("selection-modal");
 function toggleSelection(event){
     selectionModalBack.classList.toggle('hidden');
-    reset();
 }
 // Toggle Modal when ? is pushed or button is clicked
     var modalBackdrop = document.getElementById("help-modal-background");

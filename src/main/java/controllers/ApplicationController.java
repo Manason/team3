@@ -16,7 +16,8 @@
 
 package controllers;
 
-import models.Game;
+import models.EnglishGame;
+import models.SpanishGame;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
@@ -31,32 +32,53 @@ public class ApplicationController {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
     
-    public Result gameGet(){
-        Game g = new Game();
-
-
-
-        return Results.json().render(g);
-    }
-
-    public Result dealPost(Context context, Game g) {
-        if(context.getRequestPath().contains("deal")){
-            g.dealFour();
+    public Result gameGet(Context context){
+        if(context.getRequestPath().contains("spanishGame")){
+            SpanishGame g = new SpanishGame();
+            return Results.json().render(g);
         }
+        else {
+            EnglishGame g = new EnglishGame();
+            return Results.json().render(g);
+        }
+    }
+
+    public Result dealPost(Context context, EnglishGame g) {
+        g.dealFour();
+        System.out.println(g.getClass());
+        return Results.json().render(g);
+    }
+    public Result dealPostS(Context context, SpanishGame g) {
+        g.dealFour();
+        System.out.println(g.getClass());
         return Results.json().render(g);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+    public Result removeCard(Context context, @PathParam("column") int colNumber, EnglishGame g){
+        g.cols.remove(colNumber);
+        return Results.json().render(g);
+    }
+    public Result removeCardS(Context context, @PathParam("column") int colNumber, SpanishGame g){
         g.cols.remove(colNumber);
         return Results.json().render(g);
     }
 
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
+    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, EnglishGame g){
+        g.cols.move(colFrom,colTo);
+        return Results.json().render(g);
+    }
+    public Result moveCardS(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, SpanishGame g){
         g.cols.move(colFrom,colTo);
         return Results.json().render(g);
     }
 
-    public Result resetGame(Context context, Game g) {
+    public Result resetGame(Context context, EnglishGame g) {
+        if(context.getRequestPath().contains("reset")){
+            g.resetGame();
+        }
+        return Results.json().render(g);
+    }
+    public Result resetGameS(Context context, SpanishGame g) {
         if(context.getRequestPath().contains("reset")){
             g.resetGame();
         }
