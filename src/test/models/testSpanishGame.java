@@ -8,9 +8,7 @@ public class testSpanishGame {
     @Test
     public void testReset() {
         SpanishGame g = new SpanishGame();
-        g.score = 50;
         g.resetGame();
-        assertEquals(0, g.score);
     }
 
     @Test

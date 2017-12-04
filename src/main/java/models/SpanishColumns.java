@@ -32,7 +32,6 @@ public class SpanishColumns extends Columns {
     public void move(int columnFrom, int columnTo) {
         //get the top card from columnFrom
         Card topCard = getTopCard(columnFrom);
-        System.out.println("Interesting");
         //check if columnFrom is empty, if it's empty, give error; else, run code
         if (columnHasCards(columnFrom) && !columnHasCards(columnTo)) {
             cols.get(columnFrom).remove(cols.get(columnFrom).size() - 1);
