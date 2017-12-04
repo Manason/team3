@@ -34,23 +34,35 @@ public class ApplicationController {
     
     public Result gameGet(Context context){
         if(context.getRequestPath().contains("spanishGame")){
-            Game g = new SpanishGame();
-            System.out.println("Flag");
+            SpanishGame g = new SpanishGame();
+            System.out.println("Spanish Game init");
             return Results.json().render(g);
         }
         else {
             Game g = new Game();
-            System.out.println("Bad");
+            System.out.println("Normal Game init");
             return Results.json().render(g);
         }
     }
 
     public Result dealPost(Context context, Game g) {
         g.dealFour();
+        System.out.println(g.getClass());
+        System.out.println("Dealing init");
+        return Results.json().render(g);
+    }
+    public Result dealPostS(Context context, SpanishGame g) {
+        g.dealFour();
+        System.out.println(g.getClass());
+        System.out.println("Dealing init");
         return Results.json().render(g);
     }
 
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+        g.cols.remove(colNumber);
+        return Results.json().render(g);
+    }
+    public Result removeCardS(Context context, @PathParam("column") int colNumber, SpanishGame g){
         g.cols.remove(colNumber);
         return Results.json().render(g);
     }
@@ -59,10 +71,22 @@ public class ApplicationController {
         g.cols.move(colFrom,colTo);
         return Results.json().render(g);
     }
+    public Result moveCardS(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, SpanishGame g){
+        g.cols.move(colFrom,colTo);
+        return Results.json().render(g);
+    }
 
     public Result resetGame(Context context, Game g) {
         if(context.getRequestPath().contains("reset")){
             g.resetGame();
+            System.out.println("reset game init");
+        }
+        return Results.json().render(g);
+    }
+    public Result resetGameS(Context context, SpanishGame g) {
+        if(context.getRequestPath().contains("reset")){
+            g.resetGame();
+            System.out.println("reset game init");
         }
         return Results.json().render(g);
     }

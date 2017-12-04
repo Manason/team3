@@ -210,6 +210,8 @@ function valueToCard(value){
                 return "K";
             case 13:
                 return "";
+            default:
+                return value;
         }
     }
 }
@@ -320,12 +322,19 @@ document.addEventListener('keydown', (event)=> {
 function reset(){
 if (spanish == 0) {
     cardsLeft = 52;
+     $.ajax({
+        type: "POST",
+        url: "/resetGameS",
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
 }
 else {
-    cardsLeft = 50;
-}
-    updateCardsLeftHTML();
-    $.ajax({
+ $.ajax({
         type: "POST",
         url: "/resetGame",
         data: JSON.stringify(game),
@@ -335,6 +344,10 @@ else {
         contentType:"application/json; charset=utf-8",
         dataType:"json",
     });
+    cardsLeft = 50;
+}
+    updateCardsLeftHTML();
+
 }
 
 //selects the passed colNumber, moving or removing cards as appropriate
@@ -376,6 +389,7 @@ function dealCards(){
     }
     else{
         clearSelection();
+        if(spanish == 0){
         $.ajax({
             type: "POST",
             url: "/dealGame",
@@ -386,11 +400,25 @@ function dealCards(){
             contentType:"application/json; charset=utf-8",
             dataType:"json",
         });
+        }
+        else{
+         $.ajax({
+            type: "POST",
+            url: "/dealGameS",
+            data: JSON.stringify(game),
+            success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+            game = data;
+            display(data);},
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+        });
+        }
     }
 }
 
 //remove the card from the given col starting from 0
 function removeCard(colNumber){
+    if(spanish == 0){
     $.ajax({
         type: "POST",
         url: "/removeCard/"+colNumber,
@@ -401,10 +429,24 @@ function removeCard(colNumber){
         contentType:"application/json; charset=utf-8",
         dataType:"json",
     });
+    }
+    else{
+      $.ajax({
+        type: "POST",
+        url: "/removeCardS/"+colNumber,
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+    }
 }
 
 //attempts to move a card from colFrom to colTo
 function moveCard(colFrom, colTo){
+    if(spanish == 0){
     $.ajax({
         type: "POST",
         url: "/moveCard/"+colFrom+"/"+colTo,
@@ -415,6 +457,19 @@ function moveCard(colFrom, colTo){
         contentType:"application/json; charset=utf-8",
         dataType:"json",
     });
+    }
+    else{
+    $.ajax({
+        type: "POST",
+        url: "/moveCard/"+colFrom+"/"+colTo,
+        data: JSON.stringify(game),
+        success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+    }
 }
 
 //When to toggle selection modal
