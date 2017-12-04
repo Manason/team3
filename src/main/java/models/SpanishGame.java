@@ -2,8 +2,7 @@ package models;
 
 public class SpanishGame extends Game {
 
-    public Deck deck;
-
+    private SpanishDeck deck;
     public SpanishColumns cols;
 
     public SpanishGame(){
@@ -21,6 +20,7 @@ public class SpanishGame extends Game {
     }
     @Override
     public void dealFour() {
+        System.out.println("Dealingg frined");
         if (deck.getSize() > 0) {
             if(deck.getSize() == 2){
                 cols.addCard(deck.draw(), 0);

@@ -225,12 +225,11 @@ function loadGame() {
     }
     if (spanish != 0) {
         $.getJSON("http://localhost:8080/spanishGame", function( data ) {
-        display(data);
         game = data;
     });
     }
 }
-
+loadGame();
 //deals cards if deal button is clicked.
 $("#dealButton").click(function(){
     dealCards();
