@@ -109,7 +109,7 @@
     </div>
 </div>
 
-<div class = "hidden" id = "selection-modal-background">
+<div id = "selection-modal-background">
     <div id = "selection-modal">
         <h1 id="select-text"> Select a deck to play with</h1>
         <button id="spanish-button" class="button">Spanish</button>
@@ -125,10 +125,6 @@ var cardsLeft = 52;
 var selection = 0; //represents which column is selected. 0 means no selection.
 function display(game) {
 console.log(game);
-
-window.onLoad = function() {
-    toggleSelection();
-}
 
 $( '.columnOfCards .cardLocation' ).html("");
 
